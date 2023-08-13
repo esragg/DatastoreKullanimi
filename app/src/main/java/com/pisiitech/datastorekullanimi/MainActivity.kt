@@ -43,11 +43,34 @@ fun Sayfa() {
 
     LaunchedEffect(key1 = true) {
         val job:Job = CoroutineScope(Dispatchers.Main).launch {//Dispatcher gonderici, arayuzle ilgili islemler icin Main kullaniyoruz
-            //ads.kayitAl("Ahmet")
-            ads.silAd()
+            // Kayitlar
+            ads.kayitAd("Ahmet")
+            ads.kayitYas(23)
+            ads.kayitBoy(1.78)
+            ads.kayitBekarMi(true)
 
+            val liste = HashSet<String>()
+            liste.add("Mehmet")
+            liste.add("Zeynep")
+
+            ads.kayitArkadasListe(liste)
+
+            // Okuma Islemleri
             val gelenAd = ads.okuAd()
+            val gelenYas = ads.okuYas()
+            val gelenBoy = ads.okuBoy()
+            val gelenBekarMi = ads.okuBekarMi()
+            val gelenListe = ads.okuArkadasListe()
+
             Log.e("Gelen Ad", gelenAd)
+            Log.e("Gelen Yas", gelenYas.toString())
+            Log.e("Gelen Boy", gelenBoy.toString())
+            Log.e("Gelen Bekar Mi", gelenBekarMi.toString())
+            for (a in gelenListe!!) {
+                Log.e("Gelen Arkadas", a)
+            }
+
+
         }
     }
 }
