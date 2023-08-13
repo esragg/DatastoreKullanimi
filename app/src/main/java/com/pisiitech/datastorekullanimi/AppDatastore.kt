@@ -22,6 +22,8 @@ class AppDatastore(var context: Context) {
         val BEKAR_MI_KEY = booleanPreferencesKey("BEKAR_MI")
         val ARKADAS_LISTE_KEY = stringSetPreferencesKey("ARKADAS_LISTE")
 
+        val SAYAC_KEY = intPreferencesKey("SAYAC")
+
     }
 
     suspend fun kayitAd(ad:String) {
@@ -85,4 +87,15 @@ class AppDatastore(var context: Context) {
         return p[ARKADAS_LISTE_KEY]
     }
 
+    //Sayac Kismi
+    suspend fun kayitSayac(sayac:Int) {
+        context.ds.edit {
+            it[SAYAC_KEY] = sayac
+        }
+    }
+
+    suspend fun okuSayac():Int {
+        val p = context.ds.data.first()
+        return p[SAYAC_KEY]?:0
+    }
 }
